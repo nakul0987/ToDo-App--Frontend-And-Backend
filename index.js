@@ -29,6 +29,12 @@ app.delete('/todos/:id',(req,res)=>{
     res.redirect('/');
 });
 
+app.put('/todos/:id/completed',(req,res)=>{
+    let id=Number(req.params.id);
+    todos.splice(id,1);
+    res.redirect('/');
+});
+
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
 });

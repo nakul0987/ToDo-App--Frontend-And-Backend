@@ -8,12 +8,23 @@
 </head>
 <body>
 
-    <h1>ToDo</h1>
-    <form action="/todos" method="post">
-        <input type="text" name="title" placeholder="Title" required> <br>
-        <textarea name="content" id="content" placeholder="Content"></textarea> <br>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>ToDo</h1>
+        <form action="/todos" method="post">
+            <input type="text" name="title" placeholder="Title" required> <br>
+            <input type="text" name="category" placeholder="Category(Work / Study / Personal / Shopping)" required>
+            <div class="dropdown">
+                <label for="priority" class="priority">Priority</label>
+                <select name="priority" id="priority" required>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+            </div>
+            <textarea name="content" id="content" rows="12" cols="20" placeholder="Content"></textarea> <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
     <br><hr>
 
     <h2>ToDo List</h2>
@@ -21,7 +32,13 @@
         <% todos.forEach((todo,index) => { %>
             <div class="todoClass">
                 <h3><%= todo.title %></h3>
+                <p><b>Category : </b><%= todo.category %></p>
+                <p><b>Priority : </b><%= todo.priority %></p>
                 <p><%= todo.content %></p>
+
+                <form action="/todos/<%= index %>/completed?_method=PUT" method="post">
+                    <button type="submit">Done</button>
+                </form>
 
                 <form action="/todos/<%= index %>?_method=DELETE" method="post">
                     <button type="submit">Delete</button>
