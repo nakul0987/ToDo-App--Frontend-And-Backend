@@ -35,6 +35,18 @@ app.put('/todos/:id/completed',(req,res)=>{
     res.redirect('/');
 });
 
+app.get('/todos/:id/edit',(req,res)=>{
+    let id = Number(req.params.id);
+    let todo = todos[id];
+    res.render("edit.ejs", { todo, id });
+});
+
+app.put("/todos/:id",(req,res)=>{
+    let id=Number(req.params.id);
+    todos[id].content=req.body.newContent;
+    res.redirect("/");
+});
+
 app.listen(3000, () => {
     console.log("Server running on http://localhost:3000");
 });

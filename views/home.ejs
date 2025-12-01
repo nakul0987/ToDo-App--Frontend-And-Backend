@@ -36,6 +36,10 @@
                 <p><b>Priority : </b><%= todo.priority %></p>
                 <p><%= todo.content %></p>
 
+                <form action="/todos/<%= index %>/edit" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+
                 <form action="/todos/<%= index %>/completed?_method=PUT" method="post">
                     <button type="submit">Done</button>
                 </form>
